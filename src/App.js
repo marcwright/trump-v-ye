@@ -13,26 +13,39 @@ export default class App extends React.Component {
       randomQuote: '',
       choice: null,
       userClick: '',
-      showDiv: false
+      showDiv: false,
+      trumpGifsArray: [],
+      kanyeGifsArray: []
     }
-    this.myRef = React.createRef();
     this.startGame = this.startGame.bind(this)
   }
 
-  startGame() {
-    let randomNum = Math.floor(Math.random() * 10)
-    let startGameBoolean = randomNum < 5 ? true : false
+  componentDidMount() {
+    this.startGame()
+    this.getGiphys()
+  }
 
-    if (startGameBoolean) {
-      this.setState({ showDiv: false })
+  startGame() {
+    this.setState({ showDiv: false })
+    if (Math.random() < 0.5) {
       this.getTrumpQuote()
     } else {
       this.setState({
         randomQuote: kanyeQuotes[Math.floor(Math.random() * 63)],
-        choice: 'kanye',
-        showDiv: false
+        choice: 'kanye'
       })
     }
+  }
+
+  async getGiphys() {
+    let trumpGif = await axios.get(`https://api.giphy.com/v1/gifs/search?api_key=2041494ca782403cb6055682a7943c75&q=trump&limit=25&offset=0&rating=G&lang=en`)
+    let kanyeGif = await axios.get(`https://api.giphy.com/v1/gifs/search?api_key=2041494ca782403cb6055682a7943c75&q=kanye&limit=25&offset=0&rating=G&lang=en`)
+    console.log(trumpGif)
+
+    this.setState({
+      trumpGifsArray: trumpGif.data,
+      kanyeGifsArray: kanyeGif.data
+    })
   }
 
   handleClick(e) {
@@ -54,10 +67,6 @@ export default class App extends React.Component {
     })
   }
 
-  componentDidMount() {
-    this.startGame()
-  }
-
   resultComp() {
     if (this.state.userClick) {
       return <Result
@@ -71,12 +80,11 @@ export default class App extends React.Component {
   }
 
   render() {
-    console.log(this.state)
+    console.log(this.state.kanyeGifsArray.data)
     return (
       <div className="App">
         <Quote quote={this.state.randomQuote} />
         <Buttons onClick={(e) => this.handleClick(e)} />
-        {/* {this.resultComp()} */}
         <Result
           choice={this.state.choice}
           userClick={this.state.userClick}

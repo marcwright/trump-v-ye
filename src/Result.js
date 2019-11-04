@@ -1,5 +1,4 @@
 import React from 'react';
-// import './App.css';
 
 class Result extends React.Component {
   constructor(props) {
@@ -18,6 +17,7 @@ class Result extends React.Component {
     return (
       <div className={hideResultDiv}>
         {result}
+        <img src='' />
       </div>
     )
   }
