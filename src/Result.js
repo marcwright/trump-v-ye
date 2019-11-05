@@ -9,7 +9,7 @@ const Result = props => {
 
   return (
     <div className={hideResultDiv}>
-      <h3 className={"resultFlash"}>{result}</h3>
+      <div className={"resultFlash"}>{result}</div>
       <img src={props.gifUrl} alt="" style={{ height: "300px", width: "300px" }} />
     </div>
   )

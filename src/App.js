@@ -78,7 +78,7 @@ export default class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <h1>Trump v Ye</h1>
+        <h1>Trump or Ye</h1>
         <Quote quote={this.state.randomQuote} />
         <Buttons
           onClick={(e) => this.handleClick(e)}
