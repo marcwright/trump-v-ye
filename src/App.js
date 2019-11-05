@@ -33,14 +33,12 @@ export default class App extends React.Component {
       randomQuote: ''
     })
 
-    if (Math.random() < 0.5) {
-      this.getTrumpQuote()
-    } else {
+    Math.random() <= 0.5 ?
+      this.getTrumpQuote() :
       this.setState({
         randomQuote: kanyeQuotes[Math.floor(Math.random() * 63)],
         choice: 'kanye'
       })
-    }
   }
 
   async getGiphys() {
@@ -53,8 +51,7 @@ export default class App extends React.Component {
     })
   }
 
-  handleClick(e) {
-    console.log(e.target.alt)
+  handleClick = (e) => {
     let updateStateObject = {
       userClick: e.target.alt,
       showDiv: true,
@@ -63,34 +60,35 @@ export default class App extends React.Component {
     }
     let randomNum = Math.floor(Math.random() * 25)
 
+    updateStateObject.gifUrl = (e.target.alt === 'trump') ?
+      this.state.trumpGifsArray[randomNum].images.downsized.url :
+      this.state.kanyeGifsArray[randomNum].images.downsized.url
 
-    if (e.target.alt === 'trump') {
-      updateStateObject.gifUrl = this.state.trumpGifsArray[randomNum].images.downsized.url
-    } else {
-      updateStateObject.gifUrl = this.state.kanyeGifsArray[randomNum].images.downsized.url
-    }
     this.setState(updateStateObject)
 
     setTimeout(this.startGame, 3000)
   }
 
   async getTrumpQuote() {
-    let response = await axios.get('https://cors-anywhere.herokuapp.com/https://api.tronalddump.io/random/quote')
+    let trumpQuote = await axios.get('https://cors-anywhere.herokuapp.com/https://api.tronalddump.io/random/quote')
+
     this.setState({
-      randomQuote: response.data.value,
+      randomQuote: trumpQuote.data.value,
       choice: 'trump'
     })
   }
 
   render() {
-    // console.log(this.state.trumpGifsArray)
     return (
       <div className="App">
         <Quote
           quote={this.state.randomQuote}
           eraseDelay={this.state.eraseDelay}
         />
-        <Buttons onClick={(e) => this.handleClick(e)} />
+        <Buttons
+          onClick={(e) => this.handleClick(e)}
+          showDiv={this.state.showDiv}
+        />
         <Result
           choice={this.state.choice}
           userClick={this.state.userClick}

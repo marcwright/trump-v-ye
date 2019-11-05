@@ -1,27 +1,18 @@
 import React from 'react';
 
-class Result extends React.Component {
-  constructor(props) {
-    super()
-  }
+const Result = props => {
+  let result = props.choice === props.userClick ?
+    <h1>{props.choice} wins!</h1> :
+    <h1>You lose, it was {props.choice}</h1>
 
-  render() {
-    console.log(this.props)
-    let choice = this.props.choice
+  let hideResultDiv = props.showDiv ? "resultDiv" : "hideResultDiv"
 
-    let result = choice === this.props.userClick ?
-      <h1>{choice} wins!</h1> :
-      <h1>You lose, it was {choice}</h1>
-
-    let hideResultDiv = this.props.showDiv ? "resultDiv" : "hideResultDiv"
-
-    return (
-      <div className={hideResultDiv}>
-        {result}
-        <img src={this.props.gifUrl} alt="" />
-      </div>
-    )
-  }
+  return (
+    <div className={hideResultDiv}>
+      {result}
+      <img src={props.gifUrl} alt="" />
+    </div>
+  )
 }
 
 export default Result

@@ -1,5 +1,8 @@
 .App {
+  margin: 0 auto;
   text-align: center;
+  width: 600px;
+
 }
 
 .App-logo {
@@ -31,4 +34,7 @@
 .button {
   height: 225px;
   width: 225px
+}
+.quoteDiv {
+  width: 600px;
 }

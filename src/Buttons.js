@@ -1,20 +1,14 @@
 import React from 'react';
 
-class Buttons extends React.Component {
-  constructor(props) {
-    super()
-  }
+const Buttons = props => {
+  let hideResultDiv = !props.showDiv ? "resultDiv" : "hideResultDiv"
 
-  render() {
-    return (
-      <div>
-        {/* <button onClick={this.props.onClick} value='trump'>Trump</button>
-        <button onClick={this.props.onClick} value='kanye'>Kanye</button> */}
-        <img src="trump.png" alt="trump" onClick={this.props.onClick} className='button' />
-        <img src="ye.png" alt="kanye" onClick={this.props.onClick} />
-      </div>
-    )
-  }
+  return (
+    <div className={hideResultDiv}>
+      <img src="trump.png" alt="trump" onClick={props.onClick} className='button' />
+      <img src="ye.png" alt="kanye" onClick={props.onClick} />
+    </div>
+  )
 }
 
 export default Buttons
