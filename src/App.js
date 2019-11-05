@@ -7,20 +7,16 @@ import Buttons from './Buttons';
 import Result from './Result';
 import { trumpGiphyUrl, kanyeGiphyUrl, trumpQuoteUrl } from './urls'
 
-
 export default class App extends React.Component {
-  constructor(props) {
-    super()
-    this.state = {
-      randomQuote: '',
-      choice: null,
-      userClick: '',
-      showDiv: false,
-      trumpGifsArray: [],
-      kanyeGifsArray: [],
-      gifUrl: '',
-      eraseDelay: 4000
-    }
+  state = {
+    randomQuote: '',
+    answer: null,
+    userChoice: '',
+    showDiv: false,
+    trumpGifsArray: [],
+    kanyeGifsArray: [],
+    gifUrl: '',
+    eraseDelay: 4000
   }
 
   componentDidMount() {
@@ -39,7 +35,7 @@ export default class App extends React.Component {
       this.getTrumpQuote() :
       this.setState({
         randomQuote: kanyeQuotes[Math.floor(Math.random() * 63)],
-        choice: 'kanye'
+        answer: 'kanye'
       })
   }
 
@@ -55,9 +51,8 @@ export default class App extends React.Component {
 
   handleClick = (e) => {
     let updateStateObject = {
-      userClick: e.target.alt,
+      userChoice: e.target.alt,
       showDiv: true,
-      eraseDelay: 0,
       randomQuote: ''
     }
     let randomNum = Math.floor(Math.random() * 25)
@@ -76,7 +71,7 @@ export default class App extends React.Component {
 
     this.setState({
       randomQuote: trumpQuote.data.value,
-      choice: 'trump'
+      answer: 'trump'
     })
   }
 
@@ -89,8 +84,8 @@ export default class App extends React.Component {
           showDiv={this.state.showDiv}
         />
         <Result
-          choice={this.state.choice}
-          userClick={this.state.userClick}
+          answer={this.state.answer}
+          userChoice={this.state.userChoice}
           showDiv={this.state.showDiv}
           gifUrl={this.state.gifUrl}
         />

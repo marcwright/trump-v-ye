@@ -1,9 +1,9 @@
 import React from 'react';
 
 const Result = props => {
-  let result = props.choice === props.userClick ?
-    <h1>{props.choice} wins!</h1> :
-    <h1>You lose, it was {props.choice}</h1>
+  let result = props.answer === props.userChoice ?
+    <h1>{props.answer} wins!</h1> :
+    <h1>You lose, it was {props.answer}</h1>
 
   let hideResultDiv = props.showDiv ? "resultDiv" : "hideResultDiv"
 
