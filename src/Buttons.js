@@ -8,8 +8,10 @@ class Buttons extends React.Component {
   render() {
     return (
       <div>
-        <button onClick={this.props.onClick} value='trump'>Trump</button>
-        <button onClick={this.props.onClick} value='kanye'>Kanye</button>
+        {/* <button onClick={this.props.onClick} value='trump'>Trump</button>
+        <button onClick={this.props.onClick} value='kanye'>Kanye</button> */}
+        <img src="trump.png" alt="trump" onClick={this.props.onClick} className='button' />
+        <img src="ye.png" alt="kanye" onClick={this.props.onClick} />
       </div>
     )
   }

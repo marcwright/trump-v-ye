@@ -6,6 +6,7 @@ class Result extends React.Component {
   }
 
   render() {
+    console.log(this.props)
     let choice = this.props.choice
 
     let result = choice === this.props.userClick ?
@@ -17,7 +18,7 @@ class Result extends React.Component {
     return (
       <div className={hideResultDiv}>
         {result}
-        <img src={this.props.gifUrl} />
+        <img src={this.props.gifUrl} alt="" />
       </div>
     )
   }

@@ -16,7 +16,8 @@ export default class App extends React.Component {
       showDiv: false,
       trumpGifsArray: [],
       kanyeGifsArray: [],
-      gifUrl: ''
+      gifUrl: '',
+      eraseDelay: 4000
     }
   }
 
@@ -28,7 +29,8 @@ export default class App extends React.Component {
   startGame = () => {
     this.setState({
       showDiv: false,
-      gifUrl: ''
+      gifUrl: '',
+      randomQuote: ''
     })
 
     if (Math.random() < 0.5) {
@@ -52,21 +54,24 @@ export default class App extends React.Component {
   }
 
   handleClick(e) {
+    console.log(e.target.alt)
     let updateStateObject = {
-      userClick: e.target.value,
-      showDiv: true
+      userClick: e.target.alt,
+      showDiv: true,
+      eraseDelay: 0,
+      randomQuote: ''
     }
     let randomNum = Math.floor(Math.random() * 25)
 
 
-    if (e.target.value === 'trump') {
+    if (e.target.alt === 'trump') {
       updateStateObject.gifUrl = this.state.trumpGifsArray[randomNum].images.downsized.url
     } else {
       updateStateObject.gifUrl = this.state.kanyeGifsArray[randomNum].images.downsized.url
     }
     this.setState(updateStateObject)
 
-    setTimeout(this.startGame, 5000)
+    setTimeout(this.startGame, 3000)
   }
 
   async getTrumpQuote() {
@@ -78,10 +83,13 @@ export default class App extends React.Component {
   }
 
   render() {
-    console.log(this.state.trumpGifsArray)
+    // console.log(this.state.trumpGifsArray)
     return (
       <div className="App">
-        <Quote quote={this.state.randomQuote} />
+        <Quote
+          quote={this.state.randomQuote}
+          eraseDelay={this.state.eraseDelay}
+        />
         <Buttons onClick={(e) => this.handleClick(e)} />
         <Result
           choice={this.state.choice}

@@ -23,8 +23,12 @@
 
 .resultDiv {
   display: block;
-  background-color: red;
+  /* background-color: red; */
 }
 .hideResultDiv {
   display: none;
+}
+.button {
+  height: 225px;
+  width: 225px
 }
