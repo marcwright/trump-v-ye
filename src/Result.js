@@ -10,7 +10,7 @@ const Result = props => {
   return (
     <div className={hideResultDiv}>
       <div className={"resultFlash"}>{result}</div>
-      <img src={props.gifUrl} alt="" style={{ height: "300px", width: "300px" }} />
+      <img src={props.gifUrl} alt="" style={{ height: "300px", width: "300px" }} className='resultImg' />
     </div>
   )
 }
