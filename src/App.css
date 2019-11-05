@@ -50,9 +50,9 @@
   border: 3px black solid;
   box-sizing: border-box;
 }
-.button:hover {
+/* .button:hover {
   border: 2px red solid;
-}
+} */
 .quoteDiv {
   width: 300px;
 }
