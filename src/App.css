@@ -26,8 +26,17 @@
 
 .resultDiv {
   display: block;
-  /* background-color: red; */
+ 
 }
+.resultDiv img {
+  width: 300px;
+  height: 300px;
+}
+.resultFlash {
+  animation: flash linear 1s infinite;
+  color: red
+}
+
 .hideResultDiv {
   display: none;
 }
@@ -37,4 +46,9 @@
 }
 .quoteDiv {
   width: 600px;
+}
+@keyframes flash {
+	0% { opacity: 1; } 
+	50% { opacity: .1; } 
+	100% { opacity: 1; }
 }

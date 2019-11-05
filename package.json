@@ -2,7 +2,7 @@
   "name": "trump-v-ye",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://marcwright.github.io/trump-v-ye/",
+  "homepage": "https://pages.git.generalassemb.ly/marcwright-rem/trump-v-ye/",
   "dependencies": {
     "axios": "^0.19.0",
     "gh-pages": "^2.1.1",
