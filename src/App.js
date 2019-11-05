@@ -5,6 +5,8 @@ import kanyeQuotes from './kanyeQuotes';
 import Quote from './Quote';
 import Buttons from './Buttons';
 import Result from './Result';
+import { trumpGiphyUrl, kanyeGiphyUrl, trumpQuoteUrl } from './urls'
+
 
 export default class App extends React.Component {
   constructor(props) {
@@ -42,8 +44,8 @@ export default class App extends React.Component {
   }
 
   async getGiphys() {
-    let trumpGif = await axios.get(`https://api.giphy.com/v1/gifs/search?api_key=2041494ca782403cb6055682a7943c75&q=trump&limit=25&offset=0&rating=G&lang=en`)
-    let kanyeGif = await axios.get(`https://api.giphy.com/v1/gifs/search?api_key=2041494ca782403cb6055682a7943c75&q=kanye&limit=25&offset=0&rating=G&lang=en`)
+    let trumpGif = await axios.get(trumpGiphyUrl)
+    let kanyeGif = await axios.get(kanyeGiphyUrl)
 
     this.setState({
       trumpGifsArray: trumpGif.data.data,
@@ -70,7 +72,7 @@ export default class App extends React.Component {
   }
 
   async getTrumpQuote() {
-    let trumpQuote = await axios.get('https://cors-anywhere.herokuapp.com/https://api.tronalddump.io/random/quote')
+    let trumpQuote = await axios.get(trumpQuoteUrl)
 
     this.setState({
       randomQuote: trumpQuote.data.value,
@@ -81,10 +83,7 @@ export default class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <Quote
-          quote={this.state.randomQuote}
-          eraseDelay={this.state.eraseDelay}
-        />
+        <Quote quote={this.state.randomQuote} />
         <Buttons
           onClick={(e) => this.handleClick(e)}
           showDiv={this.state.showDiv}
